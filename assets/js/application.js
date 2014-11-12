@@ -51,6 +51,7 @@ $(function(){
 		},
 
 		details: function() {
+			console.log("details");
 			this.showPage('div#details-page');
 			this.selectPill('li.details-pill');
 		}
@@ -95,6 +96,7 @@ $(function(){
 		},
 
 		displayDetails: function(){
+			console.log("displayDetails");
 			//update url and pass true to execute route method
 			this.router.navigate("details-view", true);
 		}

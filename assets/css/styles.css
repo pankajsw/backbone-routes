@@ -30,3 +30,7 @@ li > button {
 li > a {
 	cursor: pointer;
 }
+
+.pages{
+	width:300px;
+}
