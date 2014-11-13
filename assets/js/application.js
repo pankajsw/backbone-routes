@@ -1,110 +1,108 @@
-$(function(){
+$(function() {
 
-	var ApplicationRouter = Backbone.Router.extend({
+    var ApplicationRouter = Backbone.Router.extend({
 
-		//map url routes to contained methods
-		routes: {
-			"": "home",
-			"home": "home",
-			"about": "about",
-			"contact": "contact",
-			"details-view": "details"
-		},
+        //map url routes to contained methods
+        routes: {
+            "": "home",
+            "home": "home",
+            "about": "about",
+            "contact": "contact",
+            "details-view": "details"
+        },
 
-		deselectPills: function(){
-			//deselect all navigation pills
-			$('ul.pills li').removeClass('active');
-		},
+        deselectPills: function() {
+            //deselect all navigation pills
+            $('ul.pills li').removeClass('active');
+        },
 
-		selectPill: function(pill){
-			//deselect all navigation pills
-			this.deselectPills();
-			//select passed navigation pill by selector
-			$(pill).addClass('active');
-		},
+        selectPill: function(pill) {
+            //deselect all navigation pills
+            this.deselectPills();
+            //select passed navigation pill by selector
+            $(pill).addClass('active');
+        },
 
-		hidePages: function(){
-			//hide all pages with 'pages' class
-			$('div.pages').hide();
-		},
+        hidePages: function() {
+            //hide all pages with 'pages' class
+            $('div.pages').hide();
+        },
 
-		showPage: function(page){
-			//hide all pages
-			this.hidePages();
-			//show passed page by selector
-			$(page).show();
-		},
+        showPage: function(page) {
+            //hide all pages
+            this.hidePages();
+            //show passed page by selector
+            $(page).show();
+        },
 
-		home: function() {
-			this.showPage('div#home-page');
-			this.selectPill('li.home-pill');
-		},
+        home: function() {
+            this.showPage('div#home-page');
+            this.selectPill('li.home-pill');
+        },
 
-		about: function() {
-			this.showPage('div#about-page');
-			this.selectPill('li.about-pill');
-		},
+        about: function() {
+            this.showPage('div#about-page');
+            this.selectPill('li.about-pill');
+        },
 
-		contact: function() {
-			this.showPage('div#contact-page');
-			this.selectPill('li.contact-pill');
-		},
+        contact: function() {
+            this.showPage('div#contact-page');
+            this.selectPill('li.contact-pill');
+        },
 
-		details: function() {
-			console.log("details");
-			this.showPage('div#details-page');
-			this.selectPill('li.details-pill');
-		}
+        details: function() {
+            this.showPage('div#details-page');
+            this.selectPill('li.details-pill');
+        }
 
-	});
+    });
 
-	var ApplicationView = Backbone.View.extend({
+    var ApplicationView = Backbone.View.extend({
 
-		//bind view to body element (all views should be bound to DOM elements)
-		el: $('body'),
+        //bind view to body element (all views should be bound to DOM elements)
+        el: $('body'),
 
-		//observe navigation click events and map to contained methods
-		events: {
-			'click ul.pills li.home-pill a': 'displayHome',
-			'click ul.pills li.about-pill a': 'displayAbout',
-			'click ul.pills li.contact-pill a': 'displayContact',
-			'click ul.pills li.details-pill a': 'displayDetails'
-		},
+        //observe navigation click events and map to contained methods
+        events: {
+            'click ul.pills li.home-pill a': 'displayHome',
+            'click ul.pills li.about-pill a': 'displayAbout',
+            'click ul.pills li.contact-pill a': 'displayContact',
+            'click ul.pills li.details-pill a': 'displayDetails'
+        },
 
-		//called on instantiation
-		initialize: function(){
-			//set dependency on ApplicationRouter
-			this.router = new ApplicationRouter();
+        //called on instantiation
+        initialize: function() {
+            //set dependency on ApplicationRouter
+            this.router = new ApplicationRouter();
 
-			//call to begin monitoring uri and route changes
-			Backbone.history.start();
-		},
+            //call to begin monitoring uri and route changes
+            Backbone.history.start();
+        },
 
-		displayHome: function(){
-			//update url and pass true to execute route method
-			this.router.navigate("home", true);
-		},
+        displayHome: function() {
+            //update url and pass true to execute route method
+            this.router.navigate("home", true);
+        },
 
-		displayAbout: function(){
-			//update url and pass true to execute route method
-			this.router.navigate("about", true);
-		},
+        displayAbout: function() {
+            //update url and pass true to execute route method
+            this.router.navigate("about", true);
+        },
 
-		displayContact: function(){
-			//update url and pass true to execute route method
-			this.router.navigate("contact", true);
-		},
+        displayContact: function() {
+            //update url and pass true to execute route method
+            this.router.navigate("contact", true);
+        },
 
-		displayDetails: function(){
-			console.log("displayDetails");
-			//update url and pass true to execute route method
-			this.router.navigate("details-view", true);
-		}
+        displayDetails: function() {
+            console.log("displayDetails");
+            //update url and pass true to execute route method
+            this.router.navigate("details-view", true);
+        }
 
-	});
+    });
 
-	//load application
-	new ApplicationView();
+    //load application
+    new ApplicationView();
 
 });
-
